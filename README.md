@@ -47,7 +47,7 @@ These configuration files are managed with [GNU Stow](https://www.gnu.org/softwa
     stow .config
     ```
 
-This will create symlinks in your home directory:
+    This will create symlinks in your home directory:
 
-`~/.zshrc` → `~/dotfiles/zsh/.zshrc`  
-`~/.config/...` → `~/dotfiles/.config/...`
+    `~/.zshrc` → `~/dotfiles/zsh/.zshrc`  
+    `~/.config/...` → `~/dotfiles/.config/...`
