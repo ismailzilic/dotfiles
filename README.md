@@ -49,5 +49,5 @@ stow .config
 
 This will create symlinks in your home directory:
 
-`~/.zshrc` → `~/dotfiles/zsh/.zshrc`
+`~/.zshrc` → `~/dotfiles/zsh/.zshrc`  
 `~/.config/...` → `~/dotfiles/.config/...`
