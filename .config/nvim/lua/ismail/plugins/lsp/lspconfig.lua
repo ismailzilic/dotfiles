@@ -3,54 +3,36 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		-- "saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
-		-- LSP Keybinds
-
+		-- LSP Keymaps
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
-				-- Buffer local mappings
-				-- Check `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
 
-				-- keymaps
-				opts.desc = "Show LSP references"
-				vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- Show LSP references
 
-				opts.desc = "Go to declaration"
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				vim.keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- Show LSP definitions
 
-				opts.desc = "Show LSP definitions"
-				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- Show LSP implementations
 
-				opts.desc = "Show LSP implementations"
-				vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- Show LSP type definitions
 
-				opts.desc = "Show LSP type definitions"
-				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+				vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- Go to declaration
 
-				opts.desc = "See available code actions"
-				vim.keymap.set({ "n", "v" }, "<leader>vca", function()
+				vim.keymap.set({ "n", "v" }, "<leader>ca", function() -- See available code actions
 					vim.lsp.buf.code_action()
-				end, opts) -- see available code actions, in visual mode will apply to selection
+				end, opts)
 
-				opts.desc = "Smart rename"
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- Rename all references under cursor
 
-				opts.desc = "Show buffer diagnostics"
-				vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- Show buffer diagnostics
 
-				opts.desc = "Show line diagnostics"
-				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Show documentation for what is under cursor
 
-				opts.desc = "Show documentation for what is under cursor"
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-				opts.desc = "Restart LSP"
-				vim.keymap.set("n", "<leader>rs", ":Lspsestart<CR>", opts) -- mapping to restart lsp if necessary
+				vim.keymap.set("n", "<leader>rs", ":Lspsestart<CR>", opts) -- Restart LSP
 
 				vim.keymap.set("i", "<C-h>", function()
 					vim.lsp.buf.signature_help()
@@ -58,7 +40,7 @@ return {
 			end,
 		})
 
-		-- Dagnostic signs
+		-- Diagnostic signs
 		local signs = {
 			[vim.diagnostic.severity.ERROR] = " ",
 			[vim.diagnostic.severity.WARN] = " ",
@@ -80,7 +62,12 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- lua_ls
+		-- Vimscript
+		lspconfig.vimls.setup({
+			capabilities = capabilities,
+		})
+
+		-- Lua
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
 			settings = {
@@ -101,63 +88,19 @@ return {
 			},
 		})
 
-		-- emmet_ls
-		lspconfig.emmet_ls.setup({
+		-- HTML
+		lspconfig.html.setup({
 			capabilities = capabilities,
-			filetypes = {
-				"html",
-				"typescriptreact",
-				"javascriptreact",
-				"css",
-				"sass",
-				"scss",
-				"less",
-				"svelte",
-			},
 		})
 
-		-- emmet_language_server
-		lspconfig.emmet_language_server.setup({
+		-- CSS
+		lspconfig.cssls.setup({
 			capabilities = capabilities,
-			filetypes = {
-				"css",
-				"eruby",
-				"html",
-				"javascript",
-				"javascriptreact",
-				"less",
-				"sass",
-				"scss",
-				"pug",
-				"typescriptreact",
-			},
-			init_options = {
-				includeLanguages = {},
-				excludeLanguages = {},
-				extensionsPath = {},
-				preferences = {},
-				showAbbreviationSuggestions = true,
-				showExpandedAbbreviation = "always",
-				showSuggestionsAsSnippets = false,
-				syntaxProfiles = {},
-				variables = {},
-			},
 		})
 
-		-- denols
-		lspconfig.denols.setup({
-			capabilities = capabilities,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-		})
-
-		-- ts_ls
+		-- Typescript
 		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
-			root_dir = function(fname)
-				local util = lspconfig.util
-				return not util.root_pattern("deno.json", "deno.jsonc")(fname)
-					and util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")(fname)
-			end,
 			single_file_support = false,
 			init_options = {
 				preferences = {
@@ -165,6 +108,26 @@ return {
 					includeCompletionsForImportStatements = true,
 				},
 			},
+		})
+
+		-- Angular
+		lspconfig.angularls.setup({
+			capabilities = capabilities,
+		})
+
+		-- C#
+		lspconfig.csharp_ls.setup({
+			capabilities = capabilities,
+		})
+
+		-- C / C++
+		lspconfig.clangd.setup({
+			capabilities = capabilities,
+		})
+
+		-- Yaml
+		lspconfig.yamlls.setup({
+			capabilities = capabilities,
 		})
 	end,
 }

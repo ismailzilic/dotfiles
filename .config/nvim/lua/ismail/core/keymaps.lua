@@ -17,8 +17,8 @@ vim.keymap.set("v", ">", ">gv", opts)
 -- Clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("v", "p", '"_dP', opts)
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-vim.keymap.set("n", "x", '"_x', opts) -- Disable character yanking on 'x'
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- Disable character yanking on deletion
+vim.keymap.set("n", "x", '"_x', opts) -- Disable character yanking on single character deletion
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", { desc = "Clear search highlight", silent = true })
@@ -27,18 +27,18 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking text",
-    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-    callback = function()
-        vim.hl.on_yank()
-    end,
+	desc = "Highlight when yanking text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
 })
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")   -- Open new tab
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") -- Open new tab
 vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") -- Close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")     -- Go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     -- Go to previous
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>") -- Go to next
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>") -- Go to previous
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") -- Open current tab in a new tab
 
 -- Split
@@ -49,9 +49,7 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 
 -- Copy file path to clipboard
 vim.keymap.set("n", "<leader>fp", function()
-        local filePath = vim.fn.expand("%:~")
-        vim.fn.setreg("+", filePath)
-        print("File path copied to clipboard:" .. filePath)
-    end,
-    { desc = "Copied file path to clipboard" }
-)
+	local filePath = vim.fn.expand("%:~")
+	vim.fn.setreg("+", filePath)
+	print("File path copied to clipboard:" .. filePath)
+end, { desc = "Copied file path to clipboard" })

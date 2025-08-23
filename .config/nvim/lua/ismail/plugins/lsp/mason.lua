@@ -26,28 +26,24 @@ return {
 		mason_lspconfig.setup({
 			automatic_enable = false,
 			ensure_installed = {
+				"vimls",
 				"lua_ls",
 				"ts_ls",
 				"html",
 				"cssls",
-				"tailwindcss",
-				"emmet_ls",
-				"emmet_language_server",
-				"eslint",
 				"marksman",
-				"csharp_ls",
 				"angularls",
+				"csharp_ls",
+				"yamlls",
 			},
 		})
 
 		-- Formatters to install
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"pylint",
+				"prettier",
+				"stylua",
 				"clangd",
-				"denols",
 			},
 		})
 	end,
