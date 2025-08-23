@@ -12,10 +12,12 @@ return {
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
 
-        telescope.load_extension("fzf")
-        telescope.load_extension("themes")
-
         telescope.setup({
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+            },
             defaults = {
                 path_display = { "smart" },
                 mappings = {
@@ -37,12 +39,15 @@ return {
             }
         })
 
-        vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
+        telescope.load_extension("fzf")
+        telescope.load_extension("themes")
+
+        vim.keymap.set("n", "<leader>po", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
         vim.keymap.set("n", "<leader>pWs", function()
             local word = vim.fn.expand("<cWORD>")
             builtin.grep_string({ search = word })
         end,
         { desc = "Find Connected Words under cursor" })
-        vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Telescope theme switcher" })
+        vim.keymap.set("n", "<leader>tHs", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Telescope theme switcher" })
     end
 }

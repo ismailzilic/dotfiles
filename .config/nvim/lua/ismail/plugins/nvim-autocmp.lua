@@ -1,7 +1,7 @@
 return {
     "hrsh7th/nvim-cmp",
     -- event = "InsertEnter",
-    branch = "main", -- fix for deprecated functions coming in nvim 0.13
+    branch = "main",
     dependencies = {
         "hrsh7th/cmp-buffer", -- source for text in buffer
         "hrsh7th/cmp-path", -- source for file system paths
@@ -204,7 +204,6 @@ return {
 
         cmp.setup({
             experimental = {
-                -- HACK: experimenting with ghost text
                 -- look at `toggle_ghost_text()` function below.
                 ghost_text = false,
             },
@@ -245,7 +244,6 @@ return {
             --     ["<CR>"] = cmp.mapping.confirm({ select = false }),
             -- }),
 
-            -- NOTE: ! Experimenting with Customized Mappings ! --
             mapping = cmp.mapping.preset.insert({
                 -- ['<BS>'] = cmp.mapping(function(_fallback)
                 --     smart_bs()

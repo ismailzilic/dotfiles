@@ -25,24 +25,21 @@ vim.keymap.set("n", "<C-c>", ":nohl<CR>", { desc = "Clear search highlight", sil
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally"})
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Makes current open file executable" })
-
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
 })
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")    -- Open new tab
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>")  -- Close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")      -- Go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")      -- Go to previous
-vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>")  -- Go to previous
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")   -- Open new tab
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") -- Close current tab
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")     -- Go to next
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     -- Go to previous
+vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") -- Open current tab in a new tab
 
 -- Split
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -52,9 +49,9 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 
 -- Copy file path to clipboard
 vim.keymap.set("n", "<leader>fp", function()
-    local filePath = vim.fn.expand("%:~")
-    vim.fn.setreg("+", filePath)
-    print("File path copied to clipboard:" .. filePath)
-end,
-{ desc = "Copies file path to clipboard" }
+        local filePath = vim.fn.expand("%:~")
+        vim.fn.setreg("+", filePath)
+        print("File path copied to clipboard:" .. filePath)
+    end,
+    { desc = "Copied file path to clipboard" }
 )
