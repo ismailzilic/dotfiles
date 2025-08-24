@@ -17,8 +17,8 @@ return {
 				max_height = "15%",
 				reverse = 0,
 				highlighter = {
-					wilder.lua_pcre2_highlighter(), -- Requires luarocks install pcre2
-					wilder.lua_fzy_highlighter(), -- Requires fzy-lua-native
+					wilder.lua_pcre2_highlighter(),
+					wilder.lua_fzy_highlighter(),
 				},
 				border = "single",
 			}))

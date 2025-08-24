@@ -2,10 +2,10 @@ return {
 	"williamboman/mason.nvim",
 	lazy = false,
 	dependencies = {
+		"neovim/nvim-lspconfig",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"hrsh7th/cmp-nvim-lsp",
-		"neovim/nvim-lspconfig",
+		"Saghen/blink.cmp",
 	},
 	config = function()
 		local mason = require("mason")
@@ -28,16 +28,15 @@ return {
 			ensure_installed = {
 				"vimls",
 				"lua_ls",
-				"ts_ls",
+				"tsserver",
 				"html",
 				"cssls",
 				"marksman",
 				"angularls",
-				"csharp_ls",
+				"omnisharp",
 				"yamlls",
 			},
 		})
-
 		-- Formatters to install
 		mason_tool_installer.setup({
 			ensure_installed = {

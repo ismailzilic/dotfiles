@@ -1,10 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
-		{ "antosha417/nvim-lsp-file-operations", config = true },
-	},
+	dependencies = { "williamboman/mason-lspconfig.nvim" },
 	config = function()
 		-- LSP Keymaps
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -59,75 +56,85 @@ return {
 
 		-- SERVER SETUPS
 		local lspconfig = require("lspconfig")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- Vimscript
-		lspconfig.vimls.setup({
-			capabilities = capabilities,
-		})
+		lspconfig.vimls.setup({})
 
 		-- Lua
 		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
 			settings = {
 				Lua = {
 					diagnostics = {
 						globals = { "vim" },
-					},
-					completion = {
-						callSnippet = "Replace",
-					},
-					workspace = {
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
 					},
 				},
 			},
 		})
 
 		-- HTML
-		lspconfig.html.setup({
-			capabilities = capabilities,
-		})
+		lspconfig.html.setup({})
 
 		-- CSS
-		lspconfig.cssls.setup({
-			capabilities = capabilities,
-		})
+		lspconfig.cssls.setup({})
 
 		-- Typescript
-		lspconfig.ts_ls.setup({
+		lspconfig.tsserver.setup({
 			capabilities = capabilities,
-			single_file_support = false,
-			init_options = {
-				preferences = {
-					includeCompletionsWithSnippetText = true,
-					includeCompletionsForImportStatements = true,
-				},
-			},
+			root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
 		})
 
 		-- Angular
 		lspconfig.angularls.setup({
+			cmd = {
+				vim.fn.stdpath("data") .. "/mason/bin/angular-language-server",
+				"--ngProbeLocations",
+				vim.fn.stdpath("data") .. "/mason/packages/angular-language-server/node_modules",
+				"--tsProbeLocations",
+				vim.fn.stdpath("data") .. "/mason/packages/angular-language-server/node_modules",
+				"--stdio",
+			},
 			capabilities = capabilities,
+			filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
+			root_dir = lspconfig.util.root_pattern("angular.json", "project.json"),
 		})
 
 		-- C#
-		lspconfig.csharp_ls.setup({
+		lspconfig.omnisharp.setup({
+			cmd = { vim.fn.stdpath("data") .. "mason/bin/omnisharp" },
 			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				if client.server_capabilities.semanticTokensProvider then
+					local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
+					vim.api.nvim_create_autocmd("TextChanged", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.semantic_tokends_full()
+						end,
+					})
+					vim.api.nvim_create_autocmd("TextChangedI", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.semantic_tokends_full()
+						end,
+					})
+				end
+			end,
 		})
 
 		-- C / C++
 		lspconfig.clangd.setup({
-			capabilities = capabilities,
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+				filetypes = { "c", "cpp", "objc", "objcpp" },
+				root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+				cmd = { vim.fn.stdpath("data") .. "/mason/bin/clangd" },
+			}),
 		})
 
 		-- Yaml
-		lspconfig.yamlls.setup({
-			capabilities = capabilities,
-		})
+		lspconfig.yamlls.setup({})
 	end,
 }

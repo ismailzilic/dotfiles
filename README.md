@@ -6,6 +6,8 @@ These configuration files are managed with [GNU Stow](https://www.gnu.org/softwa
 
 ## Setup
 
+As mentioned, you need GNU Stow installed on you system, or alternatively you can copy all the files manually.
+
 1. **Clone the repository**:
 
     ```bash
@@ -13,41 +15,19 @@ These configuration files are managed with [GNU Stow](https://www.gnu.org/softwa
     cd ~/dotfiles
     ```
 
-2. **Install GNU Stow**:
-
-- Arch Linux:
-
-    ```bash
-    sudo pacman -S stow
+    ```
+    cd ~/dotfiles
     ```
 
-- On Ubuntu/Debian:
-
-    ```bash
-    sudo apt install stow
-    ```
-
-- On Fedora:
-
-    ```bash
-    sudo dnf install stow
-    ```
-
-- On macOS (Homebrew):
-
-    ```bash
-    brew install stow
-    ```
-
-3. **Deploy dotfiles**:  
+2. **Deploy dotfiles**:  
    From inside the `dotfiles` directory, run:
 
     ```bash
-    stow zsh
-    stow .config
+    stow zsh -t ~/
+    stow .config -t ~/.config
     ```
 
     This will create symlinks in your home directory:
 
     `~/.zshrc` → `~/dotfiles/zsh/.zshrc`  
-    `~/.config/...` → `~/dotfiles/.config/...`
+     `~/.config/...` → `~/dotfiles/.config/...`

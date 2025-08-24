@@ -6,7 +6,6 @@ return {
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 		local eslint = lint.linters.eslint_d
 
-		-- If Eslint error configuration not found : change MasonInstall eslint@version or npm i -g eslint at a specific version
 		lint.linters_by_ft = {
 			javascript = { "biomejs" },
 			typescript = { "biomejs" },
