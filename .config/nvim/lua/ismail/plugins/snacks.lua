@@ -6,7 +6,6 @@ return {
 		opts = {
 			quickfile = {
 				enabled = true,
-				exclude = { "latex" },
 			},
 			picker = {
 				enabled = true,
@@ -101,33 +100,14 @@ return {
 			},
 		},
 		keys = {
-			{
-				"<leader>lg",
-				function()
-					require("snacks").lazygit()
-				end,
-				desc = "LazyGit",
-			},
-			{
-				"<leader>es",
-				function()
-					require("snacks").explorer()
-				end,
-				desc = "Open Snacks Explorer",
-			},
-			{
-				"<leader>rN",
-				function()
-					require("snacks").rename.rename_file()
-				end,
-				desc = "Rename current file",
-			},
+
+			-- Pickers & explorers
 			{
 				"<leader>pf",
 				function()
 					require("snacks").picker.files()
 				end,
-				desc = "Find Files (Snacks Picker)",
+				desc = "Find files",
 			},
 			{
 				"<leader>pg",
@@ -141,7 +121,7 @@ return {
 				function()
 					require("snacks").picker.grep_word()
 				end,
-				desc = "Search Visual selection or Word",
+				desc = "Search visual selection or word",
 				mode = { "n", "x" },
 			},
 			{
@@ -149,35 +129,48 @@ return {
 				function()
 					require("snacks").picker.keymaps({ layout = "ivy" })
 				end,
-				desc = "Search Keymaps (Snacks Picker)",
+				desc = "Search keymaps",
 			},
 			{
-				"<leader>gbr",
+				"<leader>e",
+				function()
+					require("snacks").explorer()
+				end,
+				desc = "Open snacks explorer",
+			},
+
+			-- Git
+			{
+				"<leader>gg",
+				function()
+					require("snacks").lazygit()
+				end,
+				desc = "LazyGit",
+			},
+			{
+				"<leader>gb",
 				function()
 					require("snacks").picker.git_branches({ layout = "select" })
 				end,
-				desc = "Pick and Switch Git Branches",
+				desc = "Git branches",
 			},
-			{
-				"<leader>pth",
-				function()
-					require("snacks").picker.colorschemes({ layout = "ivy" })
-				end,
-				desc = "Pick Color Schemes",
-				{
-					"<leader>pc",
-					function()
-						require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
-					end,
-					desc = "Find Config File",
-				},
-			},
+
+			-- Find
 			{
 				"<leader>ph",
 				function()
 					require("snacks").picker.help()
 				end,
-				desc = "Help Pages",
+				desc = "Help pages",
+			},
+
+			-- Other
+			{
+				"<leader>rN",
+				function()
+					require("snacks").rename.rename_file()
+				end,
+				desc = "Rename current file",
 			},
 		},
 	},

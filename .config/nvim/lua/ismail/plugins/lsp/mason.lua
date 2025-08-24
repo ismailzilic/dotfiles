@@ -28,7 +28,7 @@ return {
 			ensure_installed = {
 				"vimls",
 				"lua_ls",
-				"tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				"marksman",

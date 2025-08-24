@@ -9,15 +9,15 @@ return {
 			callback = function(ev)
 				local opts = { buffer = ev.buf, silent = true }
 
-				vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- Show LSP references
+				vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- Show LSP references
 
-				vim.keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- Show LSP definitions
+				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- Show LSP definitions
 
 				vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- Show LSP implementations
 
 				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- Show LSP type definitions
 
-				vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- Go to declaration
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- Go to declaration
 
 				vim.keymap.set({ "n", "v" }, "<leader>ca", function() -- See available code actions
 					vim.lsp.buf.code_action()
@@ -79,8 +79,16 @@ return {
 		lspconfig.cssls.setup({})
 
 		-- Typescript
-		lspconfig.tsserver.setup({
+		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
+			filetypes = {
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
+				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+			},
 			root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
 		})
 
