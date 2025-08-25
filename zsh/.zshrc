@@ -1,5 +1,8 @@
 precmd() { echo; }
 
+# Auto loads
+~/dotfiles/.config/hypr/select-config.sh
+
 # zinit setup
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -38,6 +41,7 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Keybinds
 bindkey -e
+bindkey '^;' clear-screen
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
