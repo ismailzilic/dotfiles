@@ -59,10 +59,14 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- Vimscript
-		lspconfig.vimls.setup({})
+		lspconfig.vimls.setup({
+			capabilities = capabilities,
+		})
 
 		-- Lua
 		lspconfig.lua_ls.setup({
+			capabilities = capabilities,
+			filetypes = { "lua" },
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -73,10 +77,23 @@ return {
 		})
 
 		-- HTML
-		lspconfig.html.setup({})
+		lspconfig.html.setup({
+			capabilities = capabilities,
+			filetypes = { "html" },
+			init_options = {
+				provideFormatter = true,
+			},
+		})
 
 		-- CSS
-		lspconfig.cssls.setup({})
+		lspconfig.cssls.setup({
+			capabilities = capabilities,
+			filetypes = {
+				"css",
+				"scss",
+				"less",
+			},
+		})
 
 		-- Typescript
 		lspconfig.ts_ls.setup({
@@ -111,6 +128,7 @@ return {
 		lspconfig.omnisharp.setup({
 			cmd = { vim.fn.stdpath("data") .. "mason/bin/omnisharp" },
 			capabilities = capabilities,
+			filetypes = { "cs" },
 			on_attach = function(client, bufnr)
 				if client.server_capabilities.semanticTokensProvider then
 					local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
@@ -134,15 +152,15 @@ return {
 
 		-- C / C++
 		lspconfig.clangd.setup({
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-				filetypes = { "c", "cpp", "objc", "objcpp" },
-				root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-				cmd = { vim.fn.stdpath("data") .. "/mason/bin/clangd" },
-			}),
+			capabilities = capabilities,
+			filetypes = { "c", "cpp", "objc", "objcpp" },
+			root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+			cmd = { vim.fn.stdpath("data") .. "/mason/bin/clangd" },
 		})
 
 		-- Yaml
-		lspconfig.yamlls.setup({})
+		lspconfig.yamlls.setup({
+			capabilities = capabilities,
+		})
 	end,
 }
