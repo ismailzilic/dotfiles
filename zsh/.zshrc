@@ -14,8 +14,8 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Theme
-# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
-eval $(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_frappe.omp.json')
+eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.config/ohmyposh/config.json)"
+# eval $(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin.omp.json')
 
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -35,13 +35,15 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
 # Shell integration
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # Keybinds
 bindkey -e
-bindkey '^;' clear-screen
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
@@ -60,3 +62,5 @@ setopt hist_find_no_dups
 
 # Aliases
 alias ls='ls --color'
+
+
