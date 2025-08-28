@@ -12,10 +12,7 @@ As mentioned, you need GNU Stow installed on you system, or alternatively you ca
 
     ```bash
     git clone https://github.com/ismailzilic/dotfiles.git ~/dotfiles
-    cd ~/dotfiles
-    ```
 
-    ```
     cd ~/dotfiles
     ```
 

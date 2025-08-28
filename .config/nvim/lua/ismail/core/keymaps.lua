@@ -3,8 +3,13 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv'", { desc = "Moves selected lines down in visual mode" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv'", { desc = "Moves selected lines up in visual mode" })
+-- Move an entire line up in Normal and Visual mode
+vim.keymap.set({"n", "v"}, "<M-k>", ":m-2<CR>")
+vim.keymap.set({"n", "v"}, "<M-j>", ":m+<CR>")
+
+-- Move an entire line up and down in Insert mode
+vim.keymap.set("i", "<M-k>", "<Esc>:m-2<CR>gi")
+vim.keymap.set("i", "<M-j>", "<Esc>:m+<CR>gi")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move down in buffer with cursor centered" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move up in buffer with cursor centered" })

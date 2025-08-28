@@ -81,7 +81,7 @@ inputbar {
 }
 
 entry {
-    placeholder: "Search Apps";
+    placeholder: "search";
     text-color: @text;
     placeholder-color: @fgp-color;
 }

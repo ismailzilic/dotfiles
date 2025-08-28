@@ -33,10 +33,11 @@ return {
                 "cssls",
                 "marksman",
                 "angularls",
-                "omnisharp",
+                "csharp_ls",
                 "yamlls",
             },
         })
+
         -- Formatters to install
         mason_tool_installer.setup({
             ensure_installed = {
