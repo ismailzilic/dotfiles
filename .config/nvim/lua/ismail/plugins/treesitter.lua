@@ -16,6 +16,7 @@ return {
 				ensure_installed = {
 					"vimdoc",
 					"vim",
+                    "bash",
 					"gitignore",
 					"dockerfile",
 					"json",

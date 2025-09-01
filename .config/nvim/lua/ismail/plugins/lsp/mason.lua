@@ -27,6 +27,7 @@ return {
             automatic_enable = false,
             ensure_installed = {
                 "vimls",
+                "bashls",
                 "lua_ls",
                 "ts_ls",
                 "html",

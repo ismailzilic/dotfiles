@@ -76,6 +76,12 @@ return {
 			},
 		})
 
+        -- Bash
+        lspconfig.bashls.setup({
+            capabilities = capabilities,
+            filetypes = { "sh" },
+        })
+
 		-- HTML
 		lspconfig.html.setup({
 			capabilities = capabilities,
@@ -122,32 +128,6 @@ return {
 			capabilities = capabilities,
 			filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
 			root_dir = lspconfig.util.root_pattern("angular.json", "project.json"),
-		})
-
-		-- C#
-		lspconfig.omnisharp.setup({
-			cmd = { vim.fn.stdpath("data") .. "mason/bin/omnisharp" },
-			capabilities = capabilities,
-			filetypes = { "cs" },
-			on_attach = function(client, bufnr)
-				if client.server_capabilities.semanticTokensProvider then
-					local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
-					vim.api.nvim_create_autocmd("TextChanged", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.semantic_tokends_full()
-						end,
-					})
-					vim.api.nvim_create_autocmd("TextChangedI", {
-						group = augroup,
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.semantic_tokends_full()
-						end,
-					})
-				end
-			end,
 		})
 
 		-- C / C++
