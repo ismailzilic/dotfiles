@@ -4,8 +4,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Move an entire line up in Normal and Visual mode
-vim.keymap.set({"n", "v"}, "<M-k>", ":m-2<CR>")
-vim.keymap.set({"n", "v"}, "<M-j>", ":m+<CR>")
+vim.keymap.set({ "n", "v" }, "<M-k>", ":m-2<CR>")
+vim.keymap.set({ "n", "v" }, "<M-j>", ":m+<CR>")
 
 -- Move an entire line up and down in Insert mode
 vim.keymap.set("i", "<M-k>", "<Esc>:m-2<CR>gi")
@@ -32,11 +32,9 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.on_yank()
-	end,
+  desc = "Highlight when yanking text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- Tabs
@@ -54,7 +52,7 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 
 -- Copy file path to clipboard
 vim.keymap.set("n", "<leader>fp", function()
-	local filePath = vim.fn.expand("%:~")
-	vim.fn.setreg("+", filePath)
-	print("File path copied to clipboard:" .. filePath)
+  local filePath = vim.fn.expand("%:~")
+  vim.fn.setreg("+", filePath)
+  print("File path copied to clipboard:" .. filePath)
 end, { desc = "Copied file path to clipboard" })

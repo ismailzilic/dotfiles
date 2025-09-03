@@ -12,7 +12,6 @@
     "temperature",
     "cpu",
     "clock",
-    "hyprland/window",
   ],
 
   "modules-center": [
@@ -23,10 +22,10 @@
     "backlight",
     "wireplumber",
     "network",
+    "hyprland/language",
     "battery",
     "tray",
-    //"custom/updates",
-    //"idle_inhibitor",
+    "idle_inhibitor",
     "custom/power"
   ],
 
@@ -68,16 +67,6 @@
               }
         },
     },
-
-  "hyprland/window": {
-    "format": "󰘔 {}",
-    "rewrite": {
-      "(.*) - Brave": " Brave",
-      "(.*) — Mozilla Firefox": "󰈹 Firefox",
-      "(.*) — Zen Browser": "󰈹 Zen Browser",
-      "(.*) - nvim": " Neovim",
-    }
-  },
 
   "hyprland/workspaces" : {
       "active-only": false,
@@ -144,18 +133,7 @@
 
   "custom/power": {
     "format": "󰐥",
-    "on-click": "rofi -show power-menu -modi \"power-menu:./rofi-power-menu --choices=shutdown/reboot/lockscreen/\"",
+    "on-click": "rofi -show p -modi p:'rofi-power-menu' -font 'Cascadia Mono NF 12'",
     "tooltip": false,
   },
-
-  "custom/updates": {
-    "format": " {}",
-    "tooltip-format": "{}",
-    "escape": true,
-    "return-type": "json",
-    "exec": "~/.config/waybar/updates.sh",
-    "restart-interval": 1800,
-    "on-click": "alacritty -e ~/.config/waybar/custom-scripts/update",
-    "tooltip": false
-  }
 }

@@ -8,7 +8,6 @@
   font-size: 13px;
 }
 
-/* ------ Set a Uniform Border Radius ------ */
 .modules-left,
 .modules-center,
 .modules-right,
@@ -25,36 +24,28 @@
 #battery,
 #tray,
 #idle_inhibitor,
-#custom-power,
-#custom-updates {
+#custom-power {
   border-radius: 10px;
 }
 
-/* ------ Modules Left ------ */
 .modules-left {
   background-color: @base;
   opacity: 0.85;
-  padding-right: 10px;
-  padding-left: 4px;
+  padding: 0px 4px;
 }
 
-/* ------ Modules Center ------ */
 .modules-center {
   background-color: @base;
   opacity: 0.85;
-  padding-right: 4px;
-  padding-left: 4px;
+  padding: 0px 4px;
 }
 
-/* ------ Modules Right ------ */
 .modules-right {
   background-color: @base;
   opacity: 0.85;
-  padding-right: 4px;
-  padding-left: 4px;
+  padding: 0px 4px;
 }
 
-/* ------ Window Title ------ */
 #window {
   color: @text;
   padding-right: 4px;
@@ -69,10 +60,8 @@ window#waybar {
   transition-duration: 0.5s;
 }
 
-/* -----------------------------------------------------
- * Workspaces
- * ----------------------------------------------------- */
 
+/* ----- Workspaces ----- */
 #workspaces button.empty {
   color: @surface2;
   font-family: Cascadia Mono NF;
@@ -81,31 +70,30 @@ window#waybar {
 #workspaces {
   margin: 0px 1px 0px 1px;
   padding: 0px 1px;
-  font-family: Cascadia Mono NF;
 }
 
 #workspaces button {
   padding: 0px 3px;
   margin: 4px 2px;
   color: @text;
-  font-family:  Cascadia Mono NF;
 }
 
 #workspaces button:hover {
   opacity: 0.7;
-  color: @mauve;
+  color: @base;
 }
 
 
-/* ------ CPU ------ */
-#cpu {
-  color: @mauve;
+/* ----- Left modules ----- */
+
+#custom-icon {
   background-color: @surface1;
+  color: @blue;
   padding: 2px 8px;
+  padding-right: 10px;
   margin: 6px 2px;
 }
 
-/* ------ Temperature ------ */
 #temperature {
   color: @flamingo;
   background-color: @surface1;
@@ -113,47 +101,13 @@ window#waybar {
   margin: 6px 2px;
 }
 
-/* ------ Backlight ------ */
-#backlight {
-  color: @sky;
-  background-color: @surface1;
-  padding: 2px 8px;
-  margin: 6px 2px;
-}
-
-/* ------ Wireplumber ------ */
-#wireplumber {
-  color: @peach;
-  background-color: @surface1;
-  padding: 2px 8px;
-  margin: 6px 2px;
-}
-
-/* ------ Language ------ */
-#language {
-  color: @flamingo;
-  background-color: @surface1;
-  padding: 2px 8px;
-  margin: 6px 2px;
-}
-
-/* ------ Network ------ */
-#network {
+#cpu {
   color: @mauve;
   background-color: @surface1;
   padding: 2px 8px;
   margin: 6px 2px;
 }
 
-/* ------ Battery ------ */
-#battery {
-  color: @maroon;
-  background-color: @surface1;
-  padding: 2px 8px;
-  margin: 6px 2px;
-}
-
-/* ------ Clock ------ */
 #clock {
   padding-left: 10px;
   background-color: @surface1;
@@ -164,29 +118,47 @@ window#waybar {
   margin: 6px 2px;
 }
 
-/* ------ System Tray ------ */
-#tray {
+
+/* ----- Right modules ----- */
+#backlight {
+  color: @sky;
   background-color: @surface1;
   padding: 2px 8px;
   margin: 6px 2px;
 }
 
-/* ------ Custom Modules ------ */
-#custom-icon {
-  font-size: 20px;
+#wireplumber {
+  color: @peach;
   background-color: @surface1;
-  color: @blue;
-  padding-left: 7px;
-  padding-right: 11px;
+  padding: 2px 8px;
   margin: 6px 2px;
 }
 
-#custom-power {
-  color: @red;
+#network {
+  color: @mauve;
   background-color: @surface1;
-  padding: 2px 9px;
+  padding: 2px 8px;
   margin: 6px 2px;
-  font-size: 15px;
+}
+
+#language {
+  color: @flamingo;
+  background-color: @surface1;
+  padding: 2px 8px;
+  margin: 6px 2px;
+}
+
+#battery {
+  color: @maroon;
+  background-color: @surface1;
+  padding: 2px 8px;
+  margin: 6px 2px;
+}
+
+#tray {
+  background-color: @surface1;
+  padding: 2px 8px;
+  margin: 6px 2px;
 }
 
 #idle_inhibitor {
@@ -197,22 +169,25 @@ window#waybar {
   font-size: 15px;
 }
 
+#idle_inhibitor.activated {
+  color: @green;
+}
+
+#idle_inhibitor.deactivated {
+  color: @red;
+}
+
+#custom-power {
+  color: @red;
+  background-color: @surface1;
+  padding: 2px 9px;
+  margin: 6px 2px;
+  font-size: 15px;
+}
+
+
+/* ----- Other ----- */
 tooltip {
   background: @base;
   border: 1px solid @blue;
-}
-
-#custom-updates {
-  padding: 2px 7px;
-  margin: 6px 2px;
-  background-color: @surface1;
-}
-#custom-updates.green {
-  color: @text;
-}
-#custom-updates.yellow {
-  color: @peach;
-}
-#custom-updates.red {
-  color: @red;
 }
