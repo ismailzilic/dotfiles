@@ -64,4 +64,4 @@ setopt hist_find_no_dups
 alias ls='ls --color'
 alias c='clear'
 alias v='nvim'
-
+alias reflector='sudo reflector --latest 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist'
