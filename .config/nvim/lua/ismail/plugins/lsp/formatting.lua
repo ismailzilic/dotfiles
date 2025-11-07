@@ -15,7 +15,11 @@ return {
         json = { "prettier" },
         css = { "prettier" },
         scss = { "prettier" },
+
+        -- MS ahh stack
         cs = { "csharpier" },
+        razor = { "csharpier" },
+        cshtml = { "csharpier" },
 
         -- C / C++
         c = { "clang-format" },
@@ -54,6 +58,11 @@ return {
             "--use-tabs",
             "false",
           },
+        },
+
+        csharpier = {
+          command = "dotnet",
+          args = { "csharpier", "--write-stdout" },
         },
 
         clang_format = {
