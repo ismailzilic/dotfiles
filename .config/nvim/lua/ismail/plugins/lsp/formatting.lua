@@ -2,6 +2,10 @@ return {
   "stevearc/conform.nvim",
   config = function()
     require("conform").setup({
+      default_format_opts = {
+        lsp_format = "fallback",
+      },
+
       formatters_by_ft = {
         lua = { "stylua" },
         yaml = { "yamlfmt", "prettier" },
@@ -62,11 +66,12 @@ return {
 
         csharpier = {
           command = "dotnet",
-          args = { "csharpier", "--write-stdout" },
+          args = { "csharpier", "--write-stdout", "$FILENAME" },
+          stdin = true,
         },
 
         clang_format = {
-          args = { "--style={ BasedOnStyle: LLVM, IndentWidth: 4 }" },
+          prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 8}" },
         },
       },
     })

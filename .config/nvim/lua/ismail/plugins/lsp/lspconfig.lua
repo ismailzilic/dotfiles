@@ -136,6 +136,12 @@ return {
       cmd = { vim.fn.stdpath("data") .. "/mason/bin/clangd" },
     })
 
+    --Omnisharp
+    lspconfig.omnisharp.setup({
+      capabilities = capabilities,
+      cmd = { "OmniSharp", "--languageserver" },
+    })
+
     -- Yaml
     lspconfig.yamlls.setup({
       capabilities = capabilities,

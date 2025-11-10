@@ -141,14 +141,60 @@ return {
         desc = "Git branches",
       },
 
-      -- Find
+      --LSP
+      { "gd", function() require("snacks").picker.lsp_definitions() end, desc = "Goto Definition" },
+      {
+        "gD",
+        function() require("snacks").picker.lsp_declarations() end,
+        desc = "Goto Declaration",
+      },
+      {
+        "gr",
+        function() require("snacks").picker.lsp_references() end,
+        nowait = true,
+        desc = "References",
+      },
+      {
+        "gI",
+        function() require("snacks").picker.lsp_implementations() end,
+        desc = "Goto Implementation",
+      },
+      {
+        "gy",
+        function() require("snacks").picker.lsp_type_definitions() end,
+        desc = "Goto T[y]pe Definition",
+      },
+      {
+        "gai",
+        function() require("snacks").picker.lsp_incoming_calls() end,
+        desc = "C[a]lls Incoming",
+      },
+      {
+        "gao",
+        function() require("snacks").picker.lsp_outgoing_calls() end,
+        desc = "C[a]lls Outgoing",
+      },
+      { "<leader>ss", function() require("snacks").picker.lsp_symbols() end, desc = "LSP Symbols" },
+      {
+        "<leader>sS",
+        function() require("snacks").picker.lsp_workspace_symbols() end,
+        desc = "LSP Workspace Symbols",
+      },
+
+      -- Search
+      { "<leader>sd", function() require("snacks").picker.diagnostics() end, desc = "Diagnostics" },
+      {
+        "<leader>sD",
+        function() require("snacks").picker.diagnostics_buffer() end,
+        desc = "Buffer Diagnostics",
+      },
+
+      -- Other
       {
         "<leader>ph",
         function() require("snacks").picker.help() end,
         desc = "Help pages",
       },
-
-      -- Other
       {
         "<leader>rN",
         function() require("snacks").rename.rename_file() end,
