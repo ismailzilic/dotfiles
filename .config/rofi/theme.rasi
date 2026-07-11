@@ -1,0 +1,78 @@
+* {
+	background:       #111111FF;
+	background-alt:   #151515FF;
+	foreground:       #FFFFFFFF;
+	selected:         #285577FF;
+    	selected-text:    #FFFFFFFF;
+	active:           #285577FF;
+	urgent:           #900000FF;
+    	border-color:     #4C7899FF;
+}
+
+window {
+    	background-color: @background;
+    	border-color:     @border-color;
+	border:		  2px;
+	padding:	  2px;
+}
+
+mainbox {
+    	background-color: @background;
+}
+
+listview {
+    	background-color: @background;
+}
+
+inputbar {
+    	background-color: @background-alt;
+    	text-color:       @foreground;
+}
+
+prompt {
+    	background-color: inherit;
+    	text-color:       @foreground;
+}
+
+entry {
+    	background-color: inherit;
+    	text-color:       @foreground;
+}
+
+element {
+    	background-color: @background;
+    	text-color:       @foreground;
+}
+
+element-icon {
+    	background-color: inherit;
+}
+
+element-text {
+    	background-color: inherit;
+    	text-color:       inherit;
+}
+
+element selected {
+    	background-color: @selected;
+    	text-color:       @selected-text;
+}
+
+element selected element-text {
+    	text-color: inherit;
+}
+
+element active {
+    	background-color: @active;
+    	text-color:       @foreground;
+}
+
+element urgent {
+    	background-color: @urgent;
+    	text-color:       @foreground;
+}
+
+case-indicator {
+    	background-color: inherit;
+    	text-color:       @foreground;
+}

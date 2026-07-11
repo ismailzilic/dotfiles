@@ -1,0 +1,68 @@
+{
+    	"layer": "top",
+    	"position": "bottom",
+    	"height": 25,
+    	"modules-left": ["hyprland/workspaces"],
+    // "modules-center": ["hyprland/window"],
+    "modules-right": [
+    	    "tray",
+    	    "custom/audio",
+            // "network",
+            "custom/ip",
+            "custom/cpu",
+            "custom/gpu",
+            "clock"
+    ],
+    "hyprland/workspaces": {
+            "format": "{name}",
+            "format-icons": {
+            	    "1": "1",
+            	    "2": "2",
+            	    "3": "3",
+            	    "4": "4",
+            	    "5": "5",
+            	    "6": "6",
+            	    "7": "7",
+            	    "8": "8",
+            	    "9": "9",
+            	    "10": "10"
+            }
+    },
+    "hyprland/window": {
+            "max-length": 80
+    },
+    "custom/ip": {
+            "exec": "$HOME/.config/waybar/scripts/ip.sh",
+            "interval": 30,
+            "format": "{}"
+    },
+    "custom/cpu": {
+            "exec": "$HOME/.config/waybar/scripts/cpu.sh",
+            "interval": 5,
+            "format": "{}"
+    },
+    "custom/gpu": {
+            "exec": "$HOME/.config/waybar/scripts/gpu.sh",
+            "interval": 10,
+            "format": "{}"
+    },
+    "custom/audio": {
+    	    "exec": "$HOME/.config/waybar/scripts/audio.sh",
+    	    "signal": 8,
+    	    "interval": "once",
+    	    "format": "{}"
+    },
+    "network": {
+            "format-disconnected": "Net: Disconnected",
+            "format-ethernet": "Dn: {bandwidthDownBytes} Up: {bandwidthUpBytes}",
+            "format-wifi": "Dn: {bandwidthDownBytes} Up: {bandwidthUpBytes}",
+            "tooltip-format-disconnected": "No network connection",
+            "tooltip-format-ethernet": "Ethernet: {ifname} ({ipaddr})",
+            "tooltip-format-wifi": "WiFi: {essid} ({signalStrength}%)",
+            "interval": 3
+    },
+    "clock": {
+            "format": "{:%d.%m.%Y %H:%M}",
+            "interval": 30
+    }
+}

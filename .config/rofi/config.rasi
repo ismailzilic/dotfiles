@@ -1,0 +1,42 @@
+@theme "~/dotfiles/.config/rofi/theme.rasi"
+
+configuration {
+	case-sensitive: false;
+	cycle: true;
+	filter: "";
+	normalize-match: true;
+	show-icons: true;
+	steal-focus: false;
+
+	/*---------- Matching setting ----------*/
+	matching: "normal";
+	tokenize: true;
+
+	/*---------- Drun settings ----------*/
+	display-drun: "search: ";
+	drun-categories: "";
+	drun-match-fields: "name,generic,exec,categories,keywords";
+	drun-show-actions: false;
+	drun-url-launcher: "xdg-open";
+	drun-use-desktop-cache: false;
+	drun-reload-desktop-cache: false;
+
+	drun {
+		/** Parse user desktop files. */
+		parse-user:   true;
+		/** Parse system desktop files. */
+		parse-system: true;
+		prompt: "search: ";
+	}
+
+	/*---------- History and Sorting ----------*/
+	disable-history: false;
+	sorting-method: "normal";
+	max-history-size: 25;
+
+	/*---------- Misc setting ----------*/
+	font: "monospace 12";
+	sort: false;
+	threads: 0;
+	click-to-exit: true;
+}

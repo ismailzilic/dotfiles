@@ -1,0 +1,25 @@
+[Presets]
+lastLoadedInputPreset=NPR Voice + Noice Reduction
+lastLoadedOutputPreset=Music
+
+[StreamInputs]
+inputDevice=alsa_input.pci-0000_09_00.4.analog-stereo
+mostUsedPresets=NPR Voice + Noice Reduction
+plugins=rnnoise#0,gate#0,deesser#0,compressor#0,equalizer#0,speex#0,limiter#0
+usedPresets=NPR Voice + Noice Reduction:1
+visiblePage=pluginsPage
+visiblePlugin=deesser#0
+
+[StreamOutputs]
+mostUsedPresets=Music
+outputDevice=alsa_output.pci-0000_09_00.4.analog-stereo
+plugins=bass_loudness#0,equalizer#0,maximizer#0
+usedPresets=Music:133
+visiblePage=pluginsPage
+visiblePlugin=bass_loudness#0
+
+[Window]
+height=1048
+outputAutoloadingFallbackPreset=Music
+outputAutoloadingUsesFallback=true
+width=1052
