@@ -45,5 +45,5 @@ INPUT_VOL=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk -F': *' '{print $NF}')
 [[ "${OUTPUT_VOL}" == "0.00" || "${OUTPUT_VOL,,}" == *"muted"* ]] && OUTPUT_VOL="Muted" || OUTPUT_VOL=$(echo "${OUTPUT_VOL}" | awk '{print $1 * 100}')
 [[ "${INPUT_VOL}" == "0.00" || "${INPUT_VOL,,}" == *"muted"* ]] && INPUT_VOL="Muted" || INPUT_VOL=$(echo "${INPUT_VOL}" | awk '{print $1 * 100}')
 
-echo "Spk: ${OUTPUT_VOL} | Mic: ${INPUT_VOL}"
+echo "Spk: ${OUTPUT_VOL} Mic: ${INPUT_VOL}"
 pkill -RTMIN+8 waybar

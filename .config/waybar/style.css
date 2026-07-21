@@ -2,9 +2,9 @@
     	padding: 1px 1px;
     	border: none;
     	border-radius: 0;
-    	font-family: monospace;
+    	font-family: JetBrains Mono NF, monospace;
     	font-weight: 600;
-    	font-size: 13px;
+    	font-size: 12px;
     	min-height: 0;
 }
 
@@ -49,6 +49,7 @@ window#waybar {
 
 #custom-audio,
 #custom-ip,
+#custom-mem,
 #custom-cpu,
 #custom-gpu,
 #network,
