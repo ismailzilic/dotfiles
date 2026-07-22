@@ -25,5 +25,3 @@ vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current spli
 
 vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = "Close the current buffer" })
 
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-

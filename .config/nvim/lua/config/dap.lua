@@ -3,6 +3,9 @@ local dapui = require("dapui")
 
 dapui.setup()
 
+-- Java DAP config is handled by plugins/jdtls.lua
+
+-- C/C++ debug adapter
 dap.adapters.lldb = {
 	type = "executable",
 	command = "/usr/bin/lldb-dap",
@@ -24,6 +27,37 @@ dap.configurations.cpp = {
 }
 
 dap.configurations.c = dap.configurations.cpp
+
+-- Kotlin debug adapter (Mason)
+dap.adapters.kotlin = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = vim.fn.stdpath("data") .. "/mason/bin/kotlin-debug-adapter",
+		args = { "--port", "${port}" },
+	},
+}
+
+dap.configurations.kotlin = {
+	{
+		name = "Debug Android App",
+		type = "kotlin",
+		request = "launch",
+		projectRoot = vim.fn.getcwd(),
+		mainClass = "",
+		androidPackage = "",
+		androidActivity = "",
+	},
+	{
+		name = "Debug Kotlin File",
+		type = "kotlin",
+		request = "launch",
+		projectRoot = vim.fn.getcwd(),
+		mainClass = function()
+			return vim.fn.input("Main class: ", "", "file")
+		end,
+	},
+}
 
 dap.listeners.before.attach.dapui_config = function() dapui.open() end
 dap.listeners.before.launch.dapui_config = function() dapui.open() end

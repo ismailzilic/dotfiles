@@ -4,18 +4,34 @@ return {
     		opts = {},
   	},
   	{
+    		"WhoIsSethDaniel/mason-tool-installer.nvim",
+    		dependencies = { "mason-org/mason.nvim" },
+    		opts = {
+      		ensure_installed = {
+        		"ruff", -- Python linter
+        		"selene", -- Lua linter
+        		"checkstyle", -- Java linter
+        		"ktlint", -- Kotlin linter
+        		"shellcheck", -- Bash linter
+        		"eslint_d", -- JS/TS linter
+      		},
+    		},
+  	},
+  	{
     		"mason-org/mason-lspconfig.nvim",
     		dependencies = "mason-org/mason.nvim",
     		opts = {
-      			ensure_installed = {
-        			"clangd",
-        			"marksman",
-        			"pylsp",
-        			"lua_ls",
-        			"cssls",
-        			"html",
-        			"asm_lsp",
-      			},
+      		ensure_installed = {
+        		"clangd", -- C/C++
+        		"marksman", -- Markdown
+        		"pylsp", -- Python
+        		"lua_ls", -- Lua
+        		"cssls", -- CSS
+        		"html", -- HTML
+        		"asm_lsp", -- Assembly
+        		"jdtls", -- Java
+        		"kotlin_language_server", -- Kotlin
+      		},
     		},
   	},
   	{
