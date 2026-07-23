@@ -40,6 +40,6 @@
     		{ "type": "shell", "key": "Shell" },
     		{ "type": "terminal", "key": "Terminal" },
     		"break",
-    		"colors"
+    		{ "type": "colors", "symbol": "circle" }
   	]
 }
