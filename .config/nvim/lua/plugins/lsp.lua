@@ -30,7 +30,7 @@ return {
         		"html", -- HTML
         		"asm_lsp", -- Assembly
         		"jdtls", -- Java
-        		"kotlin_language_server", -- Kotlin
+        		"kotlin_lsp", -- Kotlin
       		},
     		},
   	},
