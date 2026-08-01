@@ -18,7 +18,7 @@ function _G.set_wallpaper()
     	end
 
     	hl.exec_cmd(
-        	'swww img "' .. wallpaper .. '" ' ..
+        	'awww img "' .. wallpaper .. '" ' ..
         	'--transition-type random ' ..
         	'--transition-duration 1.5 ' ..
         	'--transition-fps 60'

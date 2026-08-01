@@ -7,7 +7,7 @@ local function start_once()
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("dunst")
-	hl.exec_cmd("swww-daemon")
+	hl.exec_cmd("awww-daemon")
 
 	hl.exec_cmd("easyeffects")
 end
