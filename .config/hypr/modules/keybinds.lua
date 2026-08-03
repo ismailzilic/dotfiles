@@ -1,8 +1,7 @@
 local terminal     = "kitty"
-local file_manager = "dolphin"
+local file_manager = "thunar"
 local menu         = "rofi -show drun"
 local color_picker = "hyprpicker -a -n -f rgb"
-
 
 local mainMod = "SUPER"
 
