@@ -4,13 +4,9 @@
 # Script for handling system and session state
 # -------------------------------------------------------
 
-selected_option=$(printf "suspend\nshut down\nrestart\nlog out" | rofi -dmenu -p "option: " )
+selected_option=$(printf "shut down\nrestart\nsuspend\nlock\nlog out" | rofi -dmenu -p "option: " )
 
 case "$selected_option" in
-
-	"suspend")
-		exec systemctl suspend
-		;;
 
 	"shut down")
 		exec systemctl poweroff
@@ -20,8 +16,16 @@ case "$selected_option" in
 		exec systemctl reboot
 		;;
 
+	"suspend")
+		exec systemctl suspend
+		;;
+
+	"lock")
+		exec loginctl lock-session
+		;;
+
 	"log out")
-		exec hyprctl dispatch exit
+		exec hyprchutdown || hyprctl dispatch exit
 		;;
 
 	"*")
